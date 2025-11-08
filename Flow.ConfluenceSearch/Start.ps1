@@ -6,7 +6,7 @@
 param (
     [string]$SolutionPath = ".\Flow.ConfluenceSearch.csproj",          # Path to solution or csproj file
     [string]$BuildConfig = "Debug",                              # Or "Release"
-    [string]$PluginFolderName = "Confluence Search-1.0.0",            # Plugin name (folder name under Plugins)
+    [string]$PluginFolderName = "Confluence Search-1.0.1",            # Plugin name (folder name under Plugins)
     [string]$FlowLauncherPath = "$env:LOCALAPPDATA\FlowLauncher\Flow.Launcher.exe"  # Default path
 )
 

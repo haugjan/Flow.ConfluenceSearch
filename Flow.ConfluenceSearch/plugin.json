@@ -6,7 +6,7 @@
   "Name": "Confluence Search",
   "Description": "Search for and open Confluence pages directly from Flow Launcher.",
   "Author": "Jan Haug",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "Language": "csharp",
   "Website": "https://github.com/haugjan/Flow.ConfluenceSearch",
   "IcoPath": "Images/icon.png",
