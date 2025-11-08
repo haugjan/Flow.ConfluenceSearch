@@ -31,6 +31,6 @@ internal sealed class ConfluenceSearchClient(Func<HttpClient> httpFactory) : ICo
 
         return await resp
             .Content.ReadFromJsonAsync<ContentSearchResponse>(cancellationToken: ct)
-            .ConfigureAwait(false);
+            .ConfigureAwait(false) ?? throw new ApplicationException("Invalid response from Confluence API");
     }
 }

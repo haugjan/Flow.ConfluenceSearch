@@ -48,7 +48,7 @@ internal class ConfluenceQueryBuilder : IConfluenceQueryBuilder
                 .When("@me")
                 .ThenRemember("contributor = currentUser()")
                 .When(@"@([\p{L}-]{2,})")
-                .ThenRemember(async input => [$"contributor.fullname ~ {input}"])
+                .ThenRemember(input => Task.FromResult<IEnumerable<string>>([$"contributor.fullname ~ {input}"]))
                 .Aggregate(mem => $"({string.Join(" OR ", mem)})")
                 .When(".*")
                 .ThenRemember()
