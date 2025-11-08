@@ -64,7 +64,7 @@ internal sealed class Searcher(
         [
             resultCreator.CreateHint(
                 "@me @name",
-                "I (@me) or a specific person (@name) is contributor or to a specific person"
+                "Search pages by contributor: me (@me) or specific person (@name)"
             ),
             resultCreator.CreateHint("/ \" . ", "Search for folders (/), blogs (\") or pages(.)"),
             resultCreator.CreateHint(
