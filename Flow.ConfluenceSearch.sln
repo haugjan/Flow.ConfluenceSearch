@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flow.ConfluenceSearch", "Flow.ConfluenceSearch\Flow.ConfluenceSearch.csproj", "{11E99889-21C1-4BBC-807A-EEB752D51F87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flow.ConfluenceSearch.Test", "Flow.ConfluenceSearch.Test\Flow.ConfluenceSearch.Test.csproj", "{A7739BB0-27AB-4D8A-80D9-20734EDE3700}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11E99889-21C1-4BBC-807A-EEB752D51F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11E99889-21C1-4BBC-807A-EEB752D51F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11E99889-21C1-4BBC-807A-EEB752D51F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11E99889-21C1-4BBC-807A-EEB752D51F87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7739BB0-27AB-4D8A-80D9-20734EDE3700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7739BB0-27AB-4D8A-80D9-20734EDE3700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7739BB0-27AB-4D8A-80D9-20734EDE3700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7739BB0-27AB-4D8A-80D9-20734EDE3700}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

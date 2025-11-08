@@ -1,0 +1,15 @@
+{
+  "ID": "EE691863-50D1-4E0F-9A36-83314C2B2B27",
+  "ActionKeywords": [
+    "confluence"
+  ],
+  "Name": "Confluence Search",
+  "Description": "Search for and open Confluence pages directly from Flow Launcher.",
+  "Author": "Jan Haug",
+  "Version": "1.0.0",
+  "Language": "csharp",
+  "Website": "https://github.com/haugjan/Flow.ConfluenceSearch",
+  "IcoPath": "Images/icon.png",
+  "ExecuteFileName": "Flow.ConfluenceSearch.dll",
+  "MinFlowLauncherVersion": "2.0.0"
+}
