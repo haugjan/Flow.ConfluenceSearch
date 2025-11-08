@@ -1,7 +1,7 @@
 {
   "ID": "EE691863-50D1-4E0F-9A36-83314C2B2B27",
   "ActionKeywords": [
-    "confluence"
+    "conf"
   ],
   "Name": "Confluence Search",
   "Description": "Search for and open Confluence pages directly from Flow Launcher.",
