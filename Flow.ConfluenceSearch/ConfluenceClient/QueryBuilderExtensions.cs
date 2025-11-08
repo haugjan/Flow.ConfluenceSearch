@@ -88,15 +88,11 @@ public static class QueryBuilderExtensions
         if (!query.Captures.Any())
             return query;
 
-        var convertedTokensList = new List<string>();
-        foreach (var capture in query.Captures)
-        {
-            var converted = await convertCapture(capture);
-            convertedTokensList.AddRange(converted);
-        }
-
-        var tokens = convertedTokensList.Distinct().ToImmutableList();
-
+        var convertedTokens = await Task.WhenAll(query.Captures.Select(convertCapture));
+        var tokens = convertedTokens
+            .SelectMany(x => x)
+            .Distinct()
+            .ToImmutableList();
         return query with
         {
             Captures = ImmutableList<string>.Empty,
