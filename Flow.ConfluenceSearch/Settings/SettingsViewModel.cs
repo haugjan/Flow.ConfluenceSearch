@@ -7,6 +7,6 @@ public sealed class SettingsViewModel(PluginSettings settings)
     public string DefaultSpaces
     {
         get => string.Join(",", Settings.DefaultSpaces);
-        set => Settings.DefaultSpaces = value.Split(",").ToList();
+        set => Settings.DefaultSpaces = value.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
     }
 }
