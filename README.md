@@ -71,52 +71,52 @@ The plugin is configured through Flow Launcher's settings interface:
 ## Usage
 
 ### User-based Search
-Open Flow Launcher (`Alt + Space`) and use the `confluence` keyword with these patterns:
+Open Flow Launcher (`Alt + Space`) and use the `conf` keyword with these patterns:
 
 **Updated by User:**
 ```
-confluence @me
+conf @me
 ```
 Find pages updated by me.
 
 ```
-confluence @john
+conf @john
 ```
 Find pages updated by John.
 
 ### Space-based Search
 
 ```
-confluence #docs
+conf #docs
 ```
 Find pages from the "docs" space.
 
 ```
-confluence #all
+conf #all
 ```
 Search all spaces (ignores default space filter from settings).
 
 ### Text Search
 
 ```
-confluence project plan
+conf project plan
 ```
 Search for pages containing "project" and "plan" in the title or content.
 
 ### Combined Search Examples
 
 ```
-confluence @me #marketing
+conf @me #marketing
 ```
 Find pages updated by me in the "marketing" space.
 
 ```
-confluence @john #docs
+conf @john #docs
 ```
 Find pages updated by John in the "docs" space.
 
 ```
-confluence #all meeting notes
+conf #all meeting notes
 ```
 Search all spaces for pages containing "meeting notes".
 
@@ -126,12 +126,12 @@ If you configure default spaces in the settings, searches will automatically be 
 
 ## Search Operators Reference
 
-| Operator | Description | Example |
-|----------|-------------|---------|
-| `@me` | Pages updated by current user | `confluence @me` |
-| `@username` | Pages updated by specific user | `confluence @john` |
-| `#spacekey` | Pages from specific space | `confluence #docs` |
-| `#all` | Search all spaces | `confluence #all` |
+| Operator | Description | Example            |
+|----------|-------------|--------------------|
+| `@me` | Pages updated by current user | `conf @me`         |
+| `@username` | Pages updated by specific user | `conf @john`          |
+| `#spacekey` | Pages from specific space | `conf #docs` |
+| `#all` | Search all spaces | `conf #all`  |
 
 ## Troubleshooting
 
