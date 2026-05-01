@@ -173,6 +173,12 @@ dotnet test
 4. Add tests if applicable.
 5. Submit a pull request.
 
+For contributors there is additional documentation under [`docs/`](docs/):
+
+- [Architecture](docs/ARCHITECTURE.md) — solution layout, request lifecycle, DI setup.
+- [Development](docs/DEVELOPMENT.md) — build/test commands, hot-swap dev loop, CI/release flow.
+- [Query syntax](docs/QUERY-SYNTAX.md) — full reference of the `conf` query language.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
