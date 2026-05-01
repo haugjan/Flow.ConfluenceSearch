@@ -39,7 +39,7 @@ For deeper docs see [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md),
   solution; ignore it
 - `.github/workflows/`
   - `build-action.yml` — PR build (`dotnet publish` win-x64)
-  - `publish-action.yml` — release on push to `master`, tags `v<plugin.json
+  - `publish-action.yml` — release on push to `main`, tags `v<plugin.json
     Version>`, attaches the published ZIP
 
 ## Build & test
@@ -57,7 +57,7 @@ DLLs into the plugin folder and relaunches.
 For producing an installable ZIP, run `Flow.ConfluenceSearch\Build-Plugin.ps1`.
 
 The publish workflow tags releases from the `Version` field in
-`Flow.ConfluenceSearch/plugin.json` — bumping that field on `master` is what
+`Flow.ConfluenceSearch/plugin.json` — bumping that field on `main` is what
 triggers a new GitHub release.
 
 ## Query language (handled by `ConfluenceQueryBuilder`)
@@ -121,9 +121,6 @@ there.
 
 ## Known wrinkles
 
-- The CI publish workflow listens on `master`, but the default branch is
-  `main`. Pushes to `main` therefore won't currently trigger a release —
-  fix the trigger before depending on it.
 - `Flow.ConfluenceSearch.Tests/` (with an `s`) sits next to the real
   `Flow.ConfluenceSearch.Test/` and contains an empty file. It is not in
   the solution; safe to delete if cleaning up.

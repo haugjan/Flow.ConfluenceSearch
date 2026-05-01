@@ -44,7 +44,7 @@
       Margin="{StaticResource SettingPanelItemRightTopBottomMargin}"
       VerticalAlignment="Center"
       FontSize="14"
-      Text="API Token"
+      Text="API Token (Cloud: email:token)"
     />
     <PasswordBox
       x:Name="MaxDecimalPlaces"

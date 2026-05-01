@@ -89,17 +89,29 @@ public class ConfluenceSearchClientTests : IDisposable
     }
 
     [Fact]
-    public async Task SearchCqlAsync_WhenApiReturnsError_ThrowsApplicationException()
+    public async Task SearchCqlAsync_WithHttpError_ThrowsHttpRequestExceptionCarryingStatusCode()
     {
         // Arrange
-        var errorContent = "server error details";
-        _httpMessageHandler.SetResponse(HttpStatusCode.InternalServerError, errorContent);
+        _httpMessageHandler.SetResponse(HttpStatusCode.InternalServerError, "server error details");
 
         // Act & Assert
-        var ex = await Should.ThrowAsync<ApplicationException>(async () =>
-            await _searchClient.SearchCqlAsync("invalid cql", 10, CancellationToken.None)
+        var ex = await Should.ThrowAsync<HttpRequestException>(() =>
+            _searchClient.SearchCqlAsync("invalid cql", 10, CancellationToken.None)
         );
-        ex.Message.ShouldContain(errorContent);
+        ex.StatusCode.ShouldBe(HttpStatusCode.InternalServerError);
+    }
+
+    [Fact]
+    public async Task SearchCqlAsync_WithUnauthorized_ThrowsHttpRequestExceptionWith401()
+    {
+        // Arrange
+        _httpMessageHandler.SetResponse(HttpStatusCode.Unauthorized, "Unauthorized");
+
+        // Act & Assert
+        var ex = await Should.ThrowAsync<HttpRequestException>(() =>
+            _searchClient.SearchCqlAsync("any cql", 10, CancellationToken.None)
+        );
+        ex.StatusCode.ShouldBe(HttpStatusCode.Unauthorized);
     }
 
     [Fact]
