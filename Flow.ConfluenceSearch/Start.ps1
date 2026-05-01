@@ -6,9 +6,18 @@
 param (
     [string]$SolutionPath = ".\Flow.ConfluenceSearch.csproj",          # Path to solution or csproj file
     [string]$BuildConfig = "Debug",                              # Or "Release"
-    [string]$PluginFolderName = "Confluence Search-1.0.1",            # Plugin name (folder name under Plugins)
+    [string]$PluginFolderName,                                   # Plugin folder name under Plugins; derived from plugin.json if omitted
     [string]$FlowLauncherPath = "$env:LOCALAPPDATA\FlowLauncher\Flow.Launcher.exe"  # Default path
 )
+
+if (-not $PluginFolderName) {
+    $manifestPath = Join-Path -Path (Split-Path $SolutionPath) -ChildPath "plugin.json"
+    if (-not (Test-Path $manifestPath)) {
+        $manifestPath = Join-Path -Path $PSScriptRoot -ChildPath "plugin.json"
+    }
+    $manifest = Get-Content -Raw $manifestPath | ConvertFrom-Json
+    $PluginFolderName = "$($manifest.Name)-$($manifest.Version)"
+}
 
 Write-Host "----------------------------------------"
 Write-Host "🔧 Flow Launcher Plugin Build Script"

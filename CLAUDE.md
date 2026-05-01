@@ -114,13 +114,6 @@ there.
   frameworks.
 - Code style follows the default .NET conventions; primary constructors are
   used throughout for DI (e.g. `Searcher(...)`, `ResultCreator(...)`).
-- The plugin ID in `plugin.json` (`EE691863-...`) and the one hardcoded in
-  `Build-Plugin.ps1` (`BD32A62C-...`) currently differ. The manifest is
-  authoritative — the script's value is unused (it isn't written into the
-  output) but should be aligned the next time the script is touched.
-
-## Known wrinkles
-
-- `Flow.ConfluenceSearch.Tests/` (with an `s`) sits next to the real
-  `Flow.ConfluenceSearch.Test/` and contains an empty file. It is not in
-  the solution; safe to delete if cleaning up.
+- `Build-Plugin.ps1` and `Start.ps1` derive the plugin id, version, and
+  folder name from `plugin.json` at runtime — don't add hard-coded
+  versions when extending those scripts.
