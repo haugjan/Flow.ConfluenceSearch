@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Net;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Flow.ConfluenceSearch.Settings;
@@ -26,6 +27,10 @@ internal interface IResultCreator
         string originalQuery,
         string searchTextInBrowser
     );
+
+    Result CreateAuthError();
+
+    Result CreateApiError(HttpStatusCode? status, string message);
 }
 
 internal class ResultCreator(PluginSettings settings) : IResultCreator
@@ -77,6 +82,28 @@ internal class ResultCreator(PluginSettings settings) : IResultCreator
                 return Open(url);
             },
             CopyText = $"{settings.BaseUrl}/wiki/search?{searchTextInBrowser}",
+        };
+
+    public Result CreateAuthError() =>
+        new()
+        {
+            Title = "Confluence authentication failed (HTTP 401)",
+            SubTitle =
+                "Did you paste the API Token as 'your-email@example.com:apitoken'? "
+                + "Click for setup help.",
+            IcoPath = "Images/gray.png",
+            Action = _ => Open("https://github.com/haugjan/Flow.ConfluenceSearch#configuration"),
+        };
+
+    public Result CreateApiError(HttpStatusCode? status, string message) =>
+        new()
+        {
+            Title = status.HasValue
+                ? $"Confluence request failed (HTTP {(int)status.Value} {status.Value})"
+                : "Confluence request failed",
+            SubTitle = message,
+            IcoPath = "Images/gray.png",
+            Action = _ => false,
         };
 
     private bool Open(string url)

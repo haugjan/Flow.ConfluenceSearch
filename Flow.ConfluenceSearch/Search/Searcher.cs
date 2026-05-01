@@ -1,4 +1,5 @@
-﻿using Flow.ConfluenceSearch.ConfluenceClient;
+﻿using System.Net.Http;
+using Flow.ConfluenceSearch.ConfluenceClient;
 using Flow.ConfluenceSearch.Settings;
 using Flow.Launcher.Plugin;
 
@@ -90,9 +91,27 @@ internal sealed class Searcher(
             timeoutCts.Token
         );
 
-        var data = await confluenceSearch
-            .SearchCqlAsync(cql, settings.MaxResults, linkedCts.Token)
-            .ConfigureAwait(false);
+        ContentSearchResponse? data;
+        try
+        {
+            data = await confluenceSearch
+                .SearchCqlAsync(cql, settings.MaxResults, linkedCts.Token)
+                .ConfigureAwait(false);
+        }
+        catch (HttpRequestException ex)
+            when (ex.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+        {
+            context.API.LogException(nameof(Searcher), "Confluence authentication failed", ex);
+            return [resultCreator.CreateAuthError()];
+        }
+        catch (HttpRequestException ex)
+        {
+            context.API.LogException(nameof(Searcher), "Confluence request failed", ex);
+            return [resultCreator.CreateApiError(ex.StatusCode, ex.Message)];
+        }
+
+        if (data is null)
+            return [resultCreator.CreateApiError(null, "Empty response from Confluence.")];
 
         var results = new List<Result>();
 

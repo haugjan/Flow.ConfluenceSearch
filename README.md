@@ -56,7 +56,7 @@ The plugin is configured through Flow Launcher's settings interface:
    | Setting | Description | Example |
    |---------|-------------|---------|
    | **Base URL** | Your Confluence instance URL | `https://yourcompany.atlassian.net` |
-   | **API Token** | Personal API token from Confluence | `ATATT3xFfGF0...` |
+   | **API Token** | Cloud: `email:token`. Server / Data Center: token alone. See below. | `your-email@example.com:ATATT3xFfGF0...` |
    | **Timeout** | Request timeout in seconds | `10` |
    | **Max Results** | Maximum number of results to display | `10` |
    | **Default Spaces** | Space keys to search by default | `["SPACE1", "SPACE2"]` |
@@ -66,7 +66,14 @@ The plugin is configured through Flow Launcher's settings interface:
 1. Go to [Atlassian Account Settings](https://id.atlassian.com/manage-profile/security/api-tokens).
 2. Click "Create API token".
 3. Give it a descriptive name (e.g., "Flow Launcher Plugin").
-4. Copy the generated token and paste it in the plugin settings.
+4. Copy the generated token.
+
+Then paste it into the plugin's **API Token** field, depending on your Confluence flavour:
+
+- **Confluence Cloud** (`*.atlassian.net`): paste `your-email@example.com:<api-token>` — the address you use to sign in to Atlassian, a colon, and the token, with no spaces. The plugin sends this as HTTP Basic auth, which is what Confluence Cloud requires.
+- **Confluence Server / Data Center**: paste the personal access token alone.
+
+If authentication fails the plugin shows `Confluence authentication failed (HTTP 401)` in the result list — the most common cause is missing the `email:` prefix on Confluence Cloud.
 
 ## Usage
 

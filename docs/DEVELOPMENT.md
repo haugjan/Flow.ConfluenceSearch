@@ -71,16 +71,10 @@ ZIP can be installed via Flow Launcher → Settings → Plugins → Install Plug
 - `.github/workflows/build-action.yml` — builds every PR via
   `dotnet publish ... -r win-x64 --no-self-contained` and uploads the result
   as an artifact.
-- `.github/workflows/publish-action.yml` — on push, reads `Version` from
-  `Flow.ConfluenceSearch/plugin.json`, publishes the build, and creates a
-  GitHub release tagged `v<Version>` if the version differs from the
-  latest existing release.
-
-> **Heads-up:** the publish workflow's `on: push:` is currently configured
-> for the `master` branch, while the repo's default branch is `main`.
-> Pushes to `main` therefore do not trigger a release; bumping
-> `plugin.json` Version on `main` has no effect until the trigger is
-> updated to include `main`.
+- `.github/workflows/publish-action.yml` — on push to `main`, reads
+  `Version` from `Flow.ConfluenceSearch/plugin.json`, publishes the build,
+  and creates a GitHub release tagged `v<Version>` if the version differs
+  from the latest existing release.
 
 ## Versioning
 
