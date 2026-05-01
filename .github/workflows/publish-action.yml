@@ -51,12 +51,14 @@ jobs:
           dotnet-version: 9.0.x
 
       - name: Build (publish)
+        if: steps.gate.outputs.required == 'True'
         run: |
           $out = "out/ConfluenceSearch-${{ steps.version.outputs.prop }}"
           dotnet publish "Flow.ConfluenceSearch/Flow.ConfluenceSearch.csproj" -c Release -r win-x64 --no-self-contained -o "$out"
           powershell -NoProfile -Command "Compress-Archive -Path $out\* -DestinationPath 'ConfluenceSearch-${{ steps.version.outputs.prop }}.zip' -Force"
 
       - name: Publish GitHub Release
+        if: steps.gate.outputs.required == 'True'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.version.outputs.prop }}
