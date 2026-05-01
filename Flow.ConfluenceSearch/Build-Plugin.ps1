@@ -8,8 +8,10 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-# Plugin information from plugin.json
-$PluginId = "BD32A62C-6F98-4541-AE8E-17B46458595F"
+# Plugin information sourced from plugin.json
+$PluginManifest = Get-Content -Raw "plugin.json" | ConvertFrom-Json
+$PluginId = $PluginManifest.ID
+$PluginVersion = $PluginManifest.Version
 $PluginName = "Flow.ConfluenceSearch"
 
 Write-Host "Building Flow Launcher Plugin: $PluginName" -ForegroundColor Green
@@ -85,7 +87,7 @@ Get-ChildItem "$BinPath\*.dll" | Where-Object {
 }
 
 # Create ZIP file
-$ZipFileName = "$PluginName-v1.0.1.zip"
+$ZipFileName = "$PluginName-v$PluginVersion.zip"
 $ZipPath = Join-Path $OutputPath $ZipFileName
 
 Write-Host "Creating ZIP package: $ZipFileName" -ForegroundColor Yellow

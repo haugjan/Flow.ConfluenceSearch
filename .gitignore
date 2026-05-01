@@ -483,5 +483,7 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-# Claude Code per-machine local settings
-.claude/settings.local.json
+# Claude Code per-machine local state (settings, locks, scheduled tasks).
+# Keep .claude/settings.json trackable in case shared project settings are added.
+.claude/
+!.claude/settings.json

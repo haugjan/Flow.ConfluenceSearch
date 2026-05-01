@@ -81,12 +81,8 @@ ZIP can be installed via Flow Launcher → Settings → Plugins → Install Plug
 The single source of truth for the plugin version is the `Version` field in
 `Flow.ConfluenceSearch/plugin.json`. Bump it before merging a release-worthy
 change. The publish workflow tags `v<Version>` and uploads the ZIP under
-that name.
-
-> The plugin GUID in `plugin.json` (`EE691863-…`) and the one hard-coded in
-> `Build-Plugin.ps1` (`BD32A62C-…`) currently differ. Flow Launcher reads
-> the manifest, so the discrepancy is harmless today, but the script's
-> value should be aligned the next time it's touched.
+that name. `Build-Plugin.ps1` and `Start.ps1` read `plugin.json` at runtime
+for the version and id, so a single bump propagates everywhere.
 
 ## Code conventions
 
