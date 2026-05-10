@@ -1,5 +1,4 @@
 ﻿using System.Net.Http;
-using System.Text;
 using Flow.ConfluenceSearch.ConfluenceClient;
 using Flow.ConfluenceSearch.Search;
 using Flow.ConfluenceSearch.Settings;
@@ -28,7 +27,7 @@ public static class ServiceProvider
                     BaseAddress = new Uri($"{config.BaseUrl}/"),
                     Timeout = TimeSpan.FromSeconds(Math.Clamp(config.Timeout.TotalSeconds, 3, 30)),
                 };
-                var basic = Convert.ToBase64String(Encoding.UTF8.GetBytes(config.ApiToken));
+                var basic = AuthHeaderBuilder.Build(config.Email, config.ApiToken);
                 httpClient.DefaultRequestHeaders.Authorization =
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", basic);
                 httpClient.DefaultRequestHeaders.Accept.ParseAdd("application/json");

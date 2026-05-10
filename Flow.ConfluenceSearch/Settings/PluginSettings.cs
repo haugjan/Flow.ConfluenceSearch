@@ -6,6 +6,7 @@ public record PluginSettings
     {
         BaseUrl = "https://www.example.com";
         Timeout = TimeSpan.FromSeconds(10);
+        Email = string.Empty;
         ApiToken = string.Empty;
         MaxResults = 10;
         DefaultSpaces = new List<string>();
@@ -13,6 +14,7 @@ public record PluginSettings
 
     public string BaseUrl { get; set; }
     public TimeSpan Timeout { get; set; }
+    public string Email { get; set; }
     public string ApiToken { get; set; }
     public List<string> DefaultSpaces { get; set; }
     public int MaxResults { get; set; }
