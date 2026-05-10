@@ -56,24 +56,27 @@ The plugin is configured through Flow Launcher's settings interface:
    | Setting | Description | Example |
    |---------|-------------|---------|
    | **Base URL** | Your Confluence instance URL | `https://yourcompany.atlassian.net` |
-   | **API Token** | Cloud: `email:token`. Server / Data Center: token alone. See below. | `your-email@example.com:ATATT3xFfGF0...` |
+   | **Email** | Cloud only: the address you sign in to Atlassian with. Leave empty on Server / Data Center. | `your-email@example.com` |
+   | **API Token** | The API token (Cloud) or personal access token (Server / DC). See below. | `ATATT3xFfGF0...` |
    | **Timeout** | Request timeout in seconds | `10` |
    | **Max Results** | Maximum number of results to display | `10` |
    | **Default Spaces** | Space keys to search by default | `["SPACE1", "SPACE2"]` |
 
 ### Creating a Confluence API Token
 
-1. Go to [Atlassian Account Settings](https://id.atlassian.com/manage-profile/security/api-tokens).
+1. Go to [Atlassian Account Settings](https://id.atlassian.com/manage-profile/security/api-tokens) (also linked from the plugin's settings panel).
 2. Click "Create API token".
 3. Give it a descriptive name (e.g., "Flow Launcher Plugin").
 4. Copy the generated token.
 
-Then paste it into the plugin's **API Token** field, depending on your Confluence flavour:
+Then configure the plugin depending on your Confluence flavour:
 
-- **Confluence Cloud** (`*.atlassian.net`): paste `your-email@example.com:<api-token>` — the address you use to sign in to Atlassian, a colon, and the token, with no spaces. The plugin sends this as HTTP Basic auth, which is what Confluence Cloud requires.
-- **Confluence Server / Data Center**: paste the personal access token alone.
+- **Confluence Cloud** (`*.atlassian.net`): put the address you use to sign in to Atlassian into **Email**, and the API token into **API Token**. The plugin combines them as `email:token` and sends HTTP Basic auth, which is what Confluence Cloud requires.
+- **Confluence Server / Data Center**: leave **Email** empty and paste the personal access token into **API Token** alone.
 
-If authentication fails the plugin shows `Confluence authentication failed (HTTP 401)` in the result list — the most common cause is missing the `email:` prefix on Confluence Cloud.
+> **Backwards compatibility:** earlier versions had a single field where you pasted `email:token`. That still works — if **Email** is empty and **API Token** already contains a colon, the value is used as-is. New configurations should use the two separate fields.
+
+If authentication fails the plugin shows `Confluence authentication failed (HTTP 401)` in the result list — the most common cause on Cloud is a missing or mistyped **Email**.
 
 ## Usage
 
@@ -154,7 +157,7 @@ If you configure default spaces in the settings, searches will automatically be 
 
 ### Authentication Errors
 - Regenerate your API token in Atlassian Account Settings.
-- Ensure you're using your email address as the username (for Atlassian Cloud).
+- On Atlassian Cloud, ensure the **Email** field is filled in with your sign-in address.
 - Check that your account has appropriate permissions.
 
 ## Development
